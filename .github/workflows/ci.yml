@@ -14,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    - name: Checar código
+      uses: actions/checkout@v4
+
     - name: Verificar se o commit tem uma tag
       run: |
         if [ -z "$(git tag --contains ${GITHUB_SHA})" ]; then
@@ -22,9 +26,7 @@ jobs:
         else
           echo "Tag encontrada para o commit ${GITHUB_SHA}."
         fi
-    - name: Checar código
-      uses: actions/checkout@v4
-
+        
     - name: Configurar Python
       uses: actions/setup-python@v4
       with:
