@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Validar se o commit possui uma tag
+    - name: Verificar se o commit tem uma tag
       run: |
-        if [ "$(git tag --contains ${GITHUB_SHA})" = "" ]; then
+        if [ -z "$(git tag --contains ${GITHUB_SHA})" ]; then
           echo "Nenhuma tag encontrada para o commit ${GITHUB_SHA}. O commit deve ter uma tag associada."
           exit 1
         else
