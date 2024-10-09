@@ -6,8 +6,8 @@ on:
   pull_request:
     branches: [main]
 
-permissions:
-  contents: write  # permissão para criar releases
+# permissions:
+#   contents: write  # permissão para criar releases
 
 jobs:
   build:
