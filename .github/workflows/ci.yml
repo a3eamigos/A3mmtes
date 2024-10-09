@@ -15,40 +15,40 @@ jobs:
 
     steps:
     
-name: Checar código
-    uses: actions/checkout@v4
+    - name: Checar código
+        uses: actions/checkout@v4
 
-    
-name: Verificar mensagem de commit
-    run: |
-      if ! git log -1 --pretty=format:%s | grep -E '^(feat|fix|chore|docs|refactor|test|style):'; then
-        echo "Erro: O commit deve começar com um dos seguintes prefixos: feat, fix, chore, docs, refactor, test, style."
-        exit 1
-      fi
+        
+    - name: Verificar mensagem de commit
+        run: |
+          if ! git log -1 --pretty=format:%s | grep -E '^(feat|fix|chore|docs|refactor|test|style):'; then
+            echo "Erro: O commit deve começar com um dos seguintes prefixos: feat, fix, chore, docs, refactor, test, style."
+            exit 1
+          fi
 
-    
-name: Configurar Python
-    uses: actions/setup-python@v4
-    with:
-      python-version: '3.x'
+        
+    - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
 
-    
-name: Instalar dependências
-    run: |
-      python -m pip install --upgrade pip
-      if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
+    - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    
-name: Rodar testes
-    run: |
-      python -m unittest discover
+        
+    - name: Rodar testes
+        run: |
+          python -m unittest discover
 
-    
-name: Gerar versão semântica
-    id: version
-    uses: actions/create-release@v1
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      tag_name: v${{ github.run_number }}
-      release_name: "Release v${{ github.run_number }}"
+        
+    - name: Gerar versão semântica
+        id: version
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.run_number }}
+          release_name: "Release v${{ github.run_number }}"
