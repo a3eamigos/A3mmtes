@@ -1,4 +1,5 @@
 def mensagem():
+    print("help")
     return "não deveria ir"
 
 

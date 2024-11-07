@@ -20,7 +20,7 @@ jobs:
 
     - name: Verificar mensagem de commit
       run: |
-        if ! git log -1 --pretty=format:%s | grep -E '^(feat|fix|chore|docs|refactor|test|style):'; then
+        if ! git log -1 --pretty=format:%s | grep -E '^(feat:|fix:|chore:|docs:|refactor:|test:|style:):'; then
           echo "Erro: O commit deve começar com um dos seguintes prefixos: feat, fix, chore, docs, refactor, test, style."
           exit 1
         fi
