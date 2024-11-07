@@ -1,5 +1,5 @@
 def mensagem():
-    return "sem feat"
+    return "não deveria ir"
 
 
 if __name__ == "__main__":
